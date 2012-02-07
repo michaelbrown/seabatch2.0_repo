@@ -395,6 +395,8 @@ while true; do
 	echo 'export SEABATCH_DIRECTORY='${SEABATCH_DIRECTORY} >> ~/.bashrc
 	echo 'export SEABATCH_REPO='${SEABATCH_REPO} >> ~/.bashrc
 	echo 'source ${SEABATCH_REPO}/env/seabatch.env' >> ~/.bashrc
+	
+	. ~/.bashrc
 	##################################################################
 	##################################################################
 
