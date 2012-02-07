@@ -394,7 +394,7 @@ while true; do
 	seabatch_statement "Modifying \"~/.bashrc\" ..."
 	echo 'export SEABATCH_DIRECTORY='${SEABATCH_DIRECTORY} >> ~/.bashrc
 	echo 'export SEABATCH_REPO='${SEABATCH_REPO} >> ~/.bashrc
-	echo 'source ${SEABATCH}/sub/env/seabatch.env' >> ~/.bashrc
+	echo 'source ${SEABATCH_REPO}/env/seabatch.env' >> ~/.bashrc
 	##################################################################
 	##################################################################
 
