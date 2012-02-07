@@ -5,11 +5,9 @@
 
 ###########################################################################
 ###########################################################################
-#Source the contents of SEABATCH_CONFIGURATION_DIRECTORY.
+#Source the file ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg.'
 
-for SEABATCH_CONFIGURATION_FILE in $SEABATCH_CONFIGURATION_DIRECTORY/*; do
-	source $SEABATCH_CONFIGURATION_FILE
-done
+source ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg'
 ###########################################################################
 ###########################################################################
 
@@ -27,7 +25,7 @@ mkdir $SEABATCH_LOG_DIRECTORY
 
 SEABATCH_LOG_FILE=${SEABATCH_LOG_DIRECTORY}'/seabatch_log_'${DATE}'.txt'
 
-SEABATCH_PARAMETER_FILE=${1:-${SEABATCH}'/seabatch_parameter_file.txt'}
+SEABATCH_PARAMETER_FILE=${1:-${SEABATCH_DIRECTORY}'/seabatch_parameter_file.txt'}
 ###########################################################################
 ###########################################################################
 
@@ -49,7 +47,7 @@ seabatch_startup 2>&1 | tee -a $SEABATCH_LOG_FILE
 ###########################################################################
 #
 	
-${SEABATCH_BIN_DIRECTORY}'/run_seabatch.sh' $SEABATCH_LOG_DIRECTORY $SEABATCH_PARAMETER_FILE 2>&1 | tee -a $SEABATCH_LOG_FILE
+${SEABATCH_BIN_DIRECTORY}'/setup/run_seabatch.sh' $SEABATCH_LOG_DIRECTORY $SEABATCH_PARAMETER_FILE 2>&1 | tee -a $SEABATCH_LOG_FILE
 ###########################################################################
 ###########################################################################
 

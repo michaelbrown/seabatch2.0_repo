@@ -362,7 +362,7 @@ while true; do
 
 	echo ''
 	seabatch_statement "Constructing \"$SEABATCH_DIRECTORY\" ..."
-	mkdir $SEABATCH_DIRECTORY
+	mkdir $SEABATCH_DIRECTORY ${SEABATCH_DIRECTORY}'/.usr'
 
 	echo ''
 	seabatch_statement "Constructing \"$SEABATCH_REPO\" ..."
@@ -371,7 +371,9 @@ while true; do
 	echo ''
 	seabatch_statement "Cloning git://github.com/michaelbrown/seabatch2.0_repo.git into \"$SEABATCH_REPO\" ..."
 	git clone git://github.com/michaelbrown/seabatch2.0_repo.git $SEABATCH_REPO
-	cp ${SEABATCH_REPO}'/usr/'* $SEABATCH_DIRECTORY
+	
+	cp ${SEABATCH_REPO}'/usr/'* ${SEABATCH_DIRECTORY}'/.usr' $SEABATCH_DIRECTORY
+	rm ${SEABATCH_DIRECTORY}'/documentation/'*'.odt'
 
 	if [ $CONSTRUCT_BASHRC = 'YES' ]; then
 	
