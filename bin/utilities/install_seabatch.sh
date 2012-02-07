@@ -372,8 +372,9 @@ while true; do
 	seabatch_statement "Cloning git://github.com/michaelbrown/seabatch2.0_repo.git into \"$SEABATCH_REPO\" ..."
 	git clone git://github.com/michaelbrown/seabatch2.0_repo.git $SEABATCH_REPO
 	
-	cp ${SEABATCH_REPO}'/usr/'* ${SEABATCH_DIRECTORY}'/.usr' $SEABATCH_DIRECTORY
-	rm ${SEABATCH_DIRECTORY}'/documentation/'*'.odt'
+	cp ${SEABATCH_REPO}'/usr/'* ${SEABATCH_DIRECTORY}'/.usr' 
+	cp ${SEABATCH_REPO}'/usr/'* $SEABATCH_DIRECTORY
+	rm ${SEABATCH_DIRECTORY}'/documentation/'*.odt
 
 	if [ $CONSTRUCT_BASHRC = 'YES' ]; then
 	
