@@ -20,6 +20,8 @@ clear
 
 seabatch_statement "Running the SeaBatch update script ..."
 echo ''
+seabatch_statement "- NOTE: In order to update SeaBatch you must have git (http://git-scm.com/) installed and be connected to the internet."
+echo ''
 seabatch_statement "- Do you wish to continue?"
 echo ''
 seabatch_statement "- If YES, then the update will continue."
