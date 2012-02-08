@@ -18,7 +18,7 @@ source ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg'
 ###########################################################################
 clear
 
-seabatch_statement "- Running the SeaBatch update script ..."
+seabatch_statement "Running the SeaBatch update script ..."
 echo ''
 seabatch_statement "- Do you wish to continue?"
 echo ''
