@@ -26,7 +26,7 @@ seabatch_statement "- If YES, then the update will continue."
 echo ''
 seabatch_statement "- If NO, then the update will be quit."
 
-prompt
+seabatch_prompt
 ###########################################################################
 ###########################################################################
 
@@ -56,6 +56,7 @@ seabatch_statement "Updating SeaBatch ..."
 
 cd $SEABATCH_REPO
 
+echo ''
 git pull
 
 echo ''
