@@ -15,10 +15,13 @@
 
 ###########################################################################
 ###########################################################################
-#Source the contents of SEABATCH_CONFIGURATION_DIRECTORY.
+#Source the file ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg
+#and the contents of ${SEABATCH_DIRECTORY}'/settings'.
 
-for SEABATCH_CONFIGURATION_FILE in $SEABATCH_CONFIGURATION_DIRECTORY/*; do
-	source $SEABATCH_CONFIGURATION_FILE
+source ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg'
+
+for SEABATCH_SETTINGS_FILE in $SEABATCH_DIRECTORY'/settings/'*; do
+	source $SEABATCH_SETTINGS_FILE
 done
 ###########################################################################
 ###########################################################################
@@ -31,7 +34,7 @@ done
 #Define SEABATCH_SCRIPT_NAME and SEABATCH_SCRIPT_VERSION, the name and
 #version of the current script.
 
-SEABATCH_SCRIPT_NAME=${SEABATCH}'/bin/level2tolevel3_temporalbin.sh'
+SEABATCH_SCRIPT_NAME=${0}
 SEABATCH_SCRIPT_VERSION='2.0'
 
 run_seabatch_script
