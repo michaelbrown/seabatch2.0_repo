@@ -107,11 +107,11 @@ if [ $PROCESS = 'YES' ]; then
 
 	if [ $START_LEVEL -le 1 -a $END_LEVEL -ge 2 ]; then
 
-		${SEABATCH}'/sub/bin/level1tolevel2.sh' $SEABATCH_LOG_DIRECTORY $SEABATCH_PARAMETER_FILE
+		${SEABATCH_BIN_DIRECTORY}'/process/level1tolevel2.sh' $SEABATCH_LOG_DIRECTORY $SEABATCH_PARAMETER_FILE
 	
 		if [ $? -ne 0 ]; then
-			EXIT_STATUS=1
-			exit_seabatch
+			SEABATCH_SCRIPT_EXIT_STATUS=1
+			exit_seabatch_script
 		fi
 	
 	fi
@@ -169,8 +169,8 @@ if [ $LOAD_OUTPUT = 'YES' ]; then
 	${SEABATCH_BIN_DIRECTORY}'/process/load_output_setup.sh' $SEABATCH_LOG_DIRECTORY $SEABATCH_PARAMETER_FILE
 
 	if [ $? -ne 0 ]; then
-		EXIT_STATUS=1
-		exit_seabatch
+		SEABATCH_SCRIPT_EXIT_STATUS=1
+		exit_seabatch_script
 	fi
 
 fi
@@ -180,4 +180,9 @@ fi
 
 
 
-echo; echo; echo '***** PROCESSING FINISHED!! *****'
+###########################################################################
+###########################################################################
+SEABATCH_SCRIPT_EXIT_STATUS=1
+exit_seabatch_script
+###########################################################################
+###########################################################################

@@ -15,10 +15,13 @@
 
 ###########################################################################
 ###########################################################################
-#Source the contents of SEABATCH_CONFIGURATION_DIRECTORY.
+#Source the file ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg
+#and the contents of ${SEABATCH_DIRECTORY}'/settings'.
 
-for SEABATCH_CONFIGURATION_FILE in $SEABATCH_CONFIGURATION_DIRECTORY/*; do
-	source $SEABATCH_CONFIGURATION_FILE
+source ${SEABATCH_CONFIGURATION_DIRECTORY}'/seabatch_functions.cfg'
+
+for SEABATCH_SETTINGS_FILE in $SEABATCH_DIRECTORY'/settings/'*; do
+	source $SEABATCH_SETTINGS_FILE
 done
 ###########################################################################
 ###########################################################################
@@ -74,11 +77,6 @@ echo; echo; seabatch_separator
 seabatch_statement "Processing variables used by ${SEABATCH_SCRIPT_NAME}:"
 echo
 seabatch_statement "- SENSOR: ${SENSOR}"
-seabatch_statement "- YEAR: ${YEAR}"
-seabatch_statement "- WEST: ${WEST}"
-seabatch_statement "- EAST: ${EAST}"
-seabatch_statement "- NORTH: ${NORTH}"
-seabatch_statement "- SOUTH: ${SOUTH}"
 echo "- L2_PRODUCTS: ${L2_PRODUCTS[@]}"
 seabatch_statement "- L2_RESOLUTION: ${L2_RESOLUTION}"
 seabatch_statement "- L2GEN_PARAMETER_FILE: ${L2GEN_PARAMETER_FILE}"
@@ -110,7 +108,7 @@ if [ $SENSOR = 'AQUA' -o $SENSOR = 'TERRA' ]; then
 	###################################################################
 	###################################################################
 	FILE_TYPE='MODIS Level-1A files'
-	FILE_TYPE_PATTERNS=[AT]*'.L1A'*
+	FILE_TYPE_PATTERNS=$MODIS_L1A_FILE_PATTERNS
 	FILE_TYPE_TEXT_FILE=${SEABATCH_LOG_DIRECTORY}'/file_list/modis_l1a.txt'
 			
 	file_type_list
@@ -242,7 +240,7 @@ if [ $SENSOR = 'AQUA' -o $SENSOR = 'TERRA' ]; then
 		seabatch_statement "Constructing the ancillary file (${ANC_FILE}) ..."
 		seabatch_separator; echo; echo
 		
-		getanc $L1B_LAC_FILE
+		getanc.py -v $L1B_LAC_FILE
 		
 		if [ $? -ne 0 ]; then
 			SCRIPT_NAME='getanc.py'
@@ -306,11 +304,39 @@ if [ $SENSOR = 'AQUA' -o $SENSOR = 'TERRA' ]; then
 		fi
 		###########################################################
 		###########################################################
-
-
+		
+		
+		
+		
+		###########################################################
+		###########################################################
+		#Remove any intermediate files that were generated.
+		
+		if [ $REMOVE_GEO = 'YES' ]; then
+			rm $GEO_FILE
+		fi
+		
+		if [ $REMOVE_L1B = 'YES' ]; then
+			rm *L1B*
+		fi
+		###########################################################
+		###########################################################
+		
+		
 
 
 	done <$FILE_TYPE_TEXT_FILE
+	###################################################################
+	###################################################################
+	
+	
+	
+	
+	###################################################################
+	###################################################################
+	echo; echo; seabatch_separator
+	seabatch_statement "Level-1 to Level-2 processing of MODIS Level-1A files finished!"
+	seabatch_separator
 	###################################################################
 	###################################################################
 
@@ -318,5 +344,15 @@ if [ $SENSOR = 'AQUA' -o $SENSOR = 'TERRA' ]; then
 
 
 fi
+###########################################################################
+###########################################################################
+
+
+
+
+###########################################################################
+###########################################################################
+SEABATCH_SCRIPT_EXIT_STATUS=0
+exit_seabatch_script
 ###########################################################################
 ###########################################################################
