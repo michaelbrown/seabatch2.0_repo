@@ -2,11 +2,11 @@
 ###########################################################################
 #ALL processing:
 
-SENSOR='AVHRR'
+SENSOR='AQUA'
 
-PROCESS='NO'
+PROCESS='YES'
 
-LOAD_OUTPUT='YES'
+LOAD_OUTPUT='NO'
 ###########################################################################
 ###########################################################################
 
@@ -22,7 +22,7 @@ END_LEVEL='2'
 
 #If processing from LEVEL-1 to LEVEL-2:
 
-L2_PRODUCTS=(nLw_645)
+L2_PRODUCTS=(default)
 
 L2_RESOLUTION=250
 
@@ -32,9 +32,9 @@ L2GEN_PARAMETER_FILE='DEFAULT'
 
 MODIS_SST='NO'
 
-YEAR='2011'
+YEAR='2012'
 
-SPATIAL_BINS=(4)
+SPATIAL_BINS=(9)
 TEMPORAL_BINS=(8D)
 
 L2BIN_PARAMETER_FILE='DEFAULT'
@@ -49,17 +49,17 @@ L3BIN_PARAMETER_FILE='DEFAULT'
 ###########################################################################
 #If LOAD_OUTPUT is set to "YES":
 
-LOADED_FILE_TYPE='NODC_PFV5_SST'
+LOADED_FILE_TYPE='SEABATCH_L3_BIN'
 
-OUTPUT_PRODUCTS=('sst')
+OUTPUT_PRODUCTS=('chlor_a' 'pic')
 
 OUTPUT_STATISTICS=(MEAN)
 
-WEST=115
-EAST=130
-NORTH=20
-SOUTH=4
+WEST=30
+EAST=120
+NORTH=-10
+SOUTH=-70
 
-OUTPUT_FILE_TYPES=('HDF')
+OUTPUT_FILE_TYPES=('PNG' 'KMZ')
 ###########################################################################
 ###########################################################################
