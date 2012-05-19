@@ -466,7 +466,7 @@ for SPATIAL_BIN in ${SPATIAL_BINS[@]}; do
 				#which indicates which type of pixels exist 
 				#in MODIS_L2_SST_FILE.
 			
-				DAYNIGHT=$(ncdump -h ${MODIS_L2_SST_FILE} | grep 'Day or Night' | cut -c20)
+				DAYNIGHT=$(ncdump_hdf -h ${MODIS_L2_SST_FILE} | grep 'Day or Night' | cut -c20)
 		
 				if [ $DAYNIGHT = 'D' ]; then 
 					DAYNIGHT='DAY'
